@@ -1,0 +1,12 @@
+{
+  "FolderOrderSettings": [
+    {"name":"library","order":6,"path":"folders/library.yy",},
+    {"name":"Objects","order":7,"path":"folders/Objects.yy",},
+    {"name":"Assets","order":8,"path":"folders/Assets.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"lib_promise","order":1,"path":"scripts/lib_promise/lib_promise.yy",},
+    {"name":"obj_config","order":3,"path":"scripts/obj_config/obj_config.yy",},
+    {"name":"lib_promise_wrappers","order":2,"path":"scripts/lib_promise_wrappers/lib_promise_wrappers.yy",},
+  ],
+}

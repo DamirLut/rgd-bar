@@ -1,0 +1,1 @@
+bot.handle_network_event();
