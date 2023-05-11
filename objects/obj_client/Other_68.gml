@@ -1,0 +1,1 @@
+game_client.handle_network_event();

@@ -1,12 +1,22 @@
 {
   "FolderOrderSettings": [
+    {"name":"Assets","order":8,"path":"folders/Assets.yy",},
+    {"name":"Textures","order":1,"path":"folders/Assets/Textures.yy",},
     {"name":"library","order":6,"path":"folders/library.yy",},
     {"name":"Objects","order":7,"path":"folders/Objects.yy",},
-    {"name":"Assets","order":8,"path":"folders/Assets.yy",},
+    {"name":"Client","order":4,"path":"folders/Objects/Client.yy",},
+    {"name":"rgdbar-label","order":2,"path":"folders/Objects/rgdbar-label.yy",},
+    {"name":"Server","order":3,"path":"folders/Objects/Server.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"lib_promise","order":1,"path":"scripts/lib_promise/lib_promise.yy",},
-    {"name":"obj_config","order":3,"path":"scripts/obj_config/obj_config.yy",},
+    {"name":"lib_game_server","order":4,"path":"scripts/lib_game_server/lib_game_server.yy",},
+    {"name":"obj_main","order":5,"path":"objects/obj_main/obj_main.yy",},
+    {"name":"ac_rgdbar","order":1,"path":"animcurves/ac_rgdbar/ac_rgdbar.yy",},
+    {"name":"lib_config","order":3,"path":"scripts/lib_config/lib_config.yy",},
     {"name":"lib_promise_wrappers","order":2,"path":"scripts/lib_promise_wrappers/lib_promise_wrappers.yy",},
+    {"name":"tl_bar","order":2,"path":"tilesets/tl_bar/tl_bar.yy",},
+    {"name":"lib_game_client","order":5,"path":"scripts/lib_game_client/lib_game_client.yy",},
+    {"name":"spr_rgdbar","order":1,"path":"sprites/spr_rgdbar/spr_rgdbar.yy",},
   ],
 }

@@ -45,7 +45,8 @@ function DiscordClient(_config) constructor {
 	
 	_events = {};
 	
-	network_connect_raw_async(_socket, _discord_gateway_host, 443 );
+	_log("Try connect to gateway...");
+	network_connect_raw_async(_socket,  _discord_gateway_host , 443 );
 	
 	handle_network_event = function(){
 		
@@ -53,6 +54,15 @@ function DiscordClient(_config) constructor {
 		
 			case network_type_non_blocking_connect: {
 				
+				if(async_load[? "succeeded"] == false){
+					
+					_log(json_encode(async_load, true));
+					
+					throw ("Can't connect to discord gateway");
+					
+				}
+				
+				_log("Connected to gateway");
 				var _intents = 0;
 				
 				for(var i = 0; i < array_length(_config.intents); i++){
@@ -144,6 +154,8 @@ function DiscordClient(_config) constructor {
 						_handlers[i](_data);
 					}
 				
+				}else{
+					_log($"Unhandled event {_event}");
 				}
 				
 				break;
@@ -177,7 +189,7 @@ function DiscordClient(_config) constructor {
 		network_send_raw(_socket, _buffer, buffer_tell(_buffer), network_send_text);
 	}
 	
-	_log = function(_value){
+	static _log = function(_value){
 		show_debug_message($"[Discord] "+_value);
 	}
 }
