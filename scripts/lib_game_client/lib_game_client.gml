@@ -15,6 +15,10 @@ function GameClient() constructor {
 		
 			case network_type_non_blocking_connect: {
 				
+				if(async_load[? "success"] == false){
+					throw $"Can't connect to {SERVER_IP}:{SERVER_PORT}";
+				}
+				
 				show_message_async("Connected!");
 				
 				break;

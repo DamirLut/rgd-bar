@@ -40,13 +40,12 @@ function DiscordClient(_config) constructor {
 	_socket = network_create_socket(network_socket_ws);
 	_buffer = buffer_create(1024,buffer_grow, 1);
 	
-	_discord_gateway_host = "wss://gateway.discord.gg/?v=10&encoding=json";
 	_discord_api_host = "https://discord.com/api/v9/";
 	
 	_events = {};
 	
 	_log("Try connect to gateway...");
-	network_connect_raw_async(_socket,  _discord_gateway_host , 443 );
+	network_connect_raw_async(_socket,  "127.0.0.1" , 9000 );
 	
 	handle_network_event = function(){
 		
