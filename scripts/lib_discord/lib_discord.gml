@@ -36,6 +36,8 @@ enum DiscordOpCode {
 
 function DiscordClient(_config) constructor {
 	
+	DiscordClient.instance = self;
+	
 	self._config = _config;
 	_socket = network_create_socket(network_socket_ws);
 	_buffer = buffer_create(1024,buffer_grow, 1);
@@ -44,12 +46,29 @@ function DiscordClient(_config) constructor {
 	
 	_events = {};
 	
-	_log("Try connect to gateway...");
-	network_connect_raw_async(_socket,  "127.0.0.1" , 9000 );
+	
+	_connect = function(_reconnect = false){
+		if(_reconnect){
+			_log("Try reconnect to gateway...");
+		}else{
+			_log("Try connect to gateway...");
+		}
+		network_connect_raw_async(_socket,  "127.0.0.1" , 9000 );
+	}
+	
+	_connect();
 	
 	handle_network_event = function(){
 		
 		switch( async_load[? "type"] ){
+			
+			case network_type_disconnect: {
+				
+				_log("Disconnected!");
+				_connect(true);
+				
+				break;
+			}
 		
 			case network_type_non_blocking_connect: {
 				

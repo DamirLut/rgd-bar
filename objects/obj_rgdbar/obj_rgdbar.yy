@@ -10,7 +10,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "rgdbar-label",
-    "path": "folders/Objects/rgdbar-label.yy",
+    "path": "folders/Objects/Shared/rgdbar-label.yy",
   },
   "parentObjectId": null,
   "persistent": false,

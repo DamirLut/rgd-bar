@@ -15,6 +15,6 @@
   "function": 2,
   "parent": {
     "name": "rgdbar-label",
-    "path": "folders/Objects/rgdbar-label.yy",
+    "path": "folders/Objects/Shared/rgdbar-label.yy",
   },
 }
