@@ -23,6 +23,7 @@ channels = [];
 
 bot.on("READY", function(){
 	show_debug_message("READY!");
+	global.GameEvent.emit("connected");
 });
 
 function spawn_user(_user_id){
@@ -51,7 +52,7 @@ bot.on("GUILD_CREATE", function(_data){
 		for(var i = 0; i < array_length(_data.voice_states); i++){
 			var state = _data.voice_states[i];
 			with({state: state }){
-				other.spawn_user( state.user_id).andThen(function(_data){
+				obj_server.spawn_user( state.user_id).andThen(function(_data){
 					_data.instance.voice_channel = state.channel_id;
 				});
 			}

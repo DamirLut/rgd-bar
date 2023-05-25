@@ -1,0 +1,4 @@
+enum GameProtocolPacket {
+	Binary,
+	Json
+}

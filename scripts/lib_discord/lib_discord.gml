@@ -34,7 +34,7 @@ enum DiscordOpCode {
 	HeartbeatACK		= 11,
 }
 
-function DiscordClient(_config) constructor {
+function DiscordClient(_config) : EventEmitter() constructor {
 	
 	DiscordClient.instance = self;
 	
@@ -43,9 +43,6 @@ function DiscordClient(_config) constructor {
 	_buffer = buffer_create(1024,buffer_grow, 1);
 	
 	_discord_api_host = "https://discord.com/api/v9/";
-	
-	_events = {};
-	
 	
 	_connect = function(_reconnect = false){
 		if(_reconnect){
@@ -66,6 +63,7 @@ function DiscordClient(_config) constructor {
 				
 				_log("Disconnected!");
 				_connect(true);
+				emit("close");
 				
 				break;
 			}
@@ -124,14 +122,6 @@ function DiscordClient(_config) constructor {
 		
 	}
 	
-	on = function(_event, _handler){
-	
-		if(!struct_exists(_events, _event)){
-			struct_set(_events, _event, []);
-		}
-		array_push(_events[$ _event], _handler);
-	}
-	
 	_ping = function(){
 		_log("PING");
 		_send({
@@ -149,7 +139,6 @@ function DiscordClient(_config) constructor {
 				
 				var _timesource = time_source_create(time_source_global, _interval, time_source_units_seconds, _ping );
 				time_source_start(_timesource);
-				
 				break;
 			}
 			
@@ -164,18 +153,8 @@ function DiscordClient(_config) constructor {
 				var _event = _json.t;
 				var _data = _json.d;
 				
-				if(struct_exists(_events, _event)){
-				
-					var _handlers = _events[$ _event];
-					
-					for(var i = 0; i < array_length(_handlers);i++){
-						_handlers[i](_data);
-					}
-				
-				}else{
-					_log($"Unhandled event {_event}");
-				}
-				
+				emit(_event, _data);
+			
 				break;
 			}
 			

@@ -4,7 +4,7 @@
 #macro RELEASE:SERVER_PORT 443
 
 
-function GameClient() constructor {
+function GameClient() : EventEmitter() constructor {
 	_socket = network_create_socket(network_socket_ws);
 
 	network_connect_async(_socket, SERVER_IP, SERVER_PORT);
@@ -15,9 +15,11 @@ function GameClient() constructor {
 		
 			case network_type_non_blocking_connect: {
 				
-				if(async_load[? "success"] == false){
-					throw $"Can't connect to {SERVER_IP}:{SERVER_PORT}";
+				if(async_load[? "succeeded"] == false){
+					return show_message( $"Can't connect to {SERVER_IP}:{SERVER_PORT}" );
 				}
+				
+				self.emit("ready");
 				
 				show_message_async("Connected!");
 				
@@ -26,7 +28,9 @@ function GameClient() constructor {
 			
 			case network_type_data: {
 				
-				/// TODO handle messages
+				var buffer = async_load[? "buffer"];
+				
+				show_debug_message(buffer_read(buffer, buffer_text));
 				
 				break;
 			}
